@@ -30,6 +30,7 @@ class DetailsView: BaseView {
         }
     }
     
+    ///Limpieza del stack que contiene la vista
     private func cleanStack() {
         stack.subviews.forEach { $0.removeFromSuperview() }
     }
@@ -41,8 +42,8 @@ class DetailsView: BaseView {
         presenter.getLocation(id)
     }
     
+    ///Pintar vista de personaje
     func printViewCharacter(_ data: CharacterModel) {
-        //Limpieza del stack que contiene la vista
         cleanStack()
         //Stack cabecera del personaje
         let stackHeaderCharacter = UIStackView()
@@ -148,9 +149,9 @@ class DetailsView: BaseView {
         stack.addArrangedSubview(stackLocation)
     }
     
+    ///Pintar vista de episodio
     func printViewEpisode(_ data: EpisodeModel) {
         cleanStack()
-        
         if !data.episode.isEmpty {
             //Codigo
             let label = UILabel()
@@ -169,43 +170,50 @@ class DetailsView: BaseView {
         }
     }
     
+    ///Pintar vista de localizacion/origen
     func printViewLocation(_ data: CharacterModel.Location) {
         cleanStack()
-        let header = UIStackView()
-        header.axis = .horizontal
-        header.distribution = .fill
-        let view = UIView(frame: .init(origin: .zero, size: .init(width: 160, height: 50)))
-        view.backgroundColor = .clear
-        header.addArrangedSubview(view)
-        let buttonClose = UIButton(frame: .init(origin: .zero, size: .init(width: 50, height: 50)))
-        buttonClose.setImage(.init(systemName: "xmark"), for: .normal)
-        buttonClose.tintColor = .black
-        buttonClose.addAction(.init(handler: { _ in
-            self.dismiss(animated: true)
-        }), for: .touchUpInside)
-        header.addArrangedSubview(buttonClose)
-        stack.addArrangedSubview(header)
-        if !data.name.isEmpty {
-            //Nombre
-            let label = UILabel()
-            label.text = data.name
-            label.font = UIFont.systemFont(ofSize: 35)
-            stack.addArrangedSubview(label)
-        }
+        addCloseButton()
+        //Stack cabecera
+        let stackHeader = UIStackView()
+        stackHeader.axis = .horizontal
+        stackHeader.spacing = 10
+        stackHeader.distribution = .fill
+        //Imagen
+        let image: UIImageView = UIImageView(image: .init(named: "planetas"))
+        image.clipsToBounds = true
+        image.contentMode = .scaleAspectFill
+        image.layer.cornerRadius = 30
+        image.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMaxYCorner]
+        stackHeader.addArrangedSubview(image)
+        image.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            image.widthAnchor.constraint(equalToConstant: 120),
+            image.heightAnchor.constraint(equalToConstant: 120)
+        ])
+        //Stack info
+        let stackInfoHeader = UIStackView()
+        stackInfoHeader.distribution = .fillProportionally
+        stackInfoHeader.spacing = 10
+        stackInfoHeader.axis = .vertical
+        stackHeader.addArrangedSubview(stackInfoHeader)
         if !(data.dimension ?? "").isEmpty {
             //Dimension
             let label = UILabel()
+            label.numberOfLines = 0
             label.font = UIFont.systemFont(ofSize: 20)
             label.text = "Dimesión: " + (data.dimension ?? "")
-            stack.addArrangedSubview(label)
+            stackInfoHeader.addArrangedSubview(label)
         }
         if !(data.type ?? "").isEmpty {
             //Tipo
             let label = UILabel()
+            label.numberOfLines = 0
             label.font = UIFont.systemFont(ofSize: 20)
             label.text = "Tipo: " + (data.type ?? "")
-            stack.addArrangedSubview(label)
+            stackInfoHeader.addArrangedSubview(label)
         }
+        stack.addArrangedSubview(stackHeader)
     }
 }
 
@@ -215,7 +223,12 @@ extension DetailsView: DetailsPresenterDelegate {
         let details: DetailsView = storyboard?.instantiateViewController(withIdentifier: "details") as! DetailsView
         details.typeView = .locations
         details.data = location
-        details.modalPresentationStyle = .automatic
-        self.present(details, animated: true)
+        details.title = location.name
+        let nav = details.embedInNavigationController()
+        nav.modalPresentationStyle = .automatic
+        nav.navigationBar.prefersLargeTitles = true
+        UINavigationBar.appearance().backgroundColor = .systemOrange
+        nav.navigationBar.tintColor = .black
+        self.present(nav, animated: true)
     }
 }

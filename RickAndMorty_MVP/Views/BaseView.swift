@@ -13,8 +13,10 @@ class BaseView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .secondarySystemGroupedBackground
-        self.navigationItem.setHidesBackButton(true, animated: false)
-        self.navigationItem.setLeftBarButton(.init(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(back)), animated: true)
+        if let nav = navigationController, nav.viewControllers.count > 1 {
+            self.navigationItem.setHidesBackButton(true, animated: false)
+            self.navigationItem.setLeftBarButton(.init(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(back)), animated: true)
+        }
         
         iProgressHUD.sharedInstance().attachProgress(toView: self.view)
     }

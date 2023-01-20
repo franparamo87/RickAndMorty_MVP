@@ -24,6 +24,7 @@
 		A15C14B12978703400190EEC /* EnumTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15C14B02978703400190EEC /* EnumTypeView.swift */; };
 		A15C14B42978797800190EEC /* Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15C14B32978797800190EEC /* Image+Extension.swift */; };
 		A15C14B6297885A800190EEC /* NavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15C14B5297885A800190EEC /* NavController.swift */; };
+		A15E49AB297A97150077AD9A /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E49AA297A97150077AD9A /* View+Extension.swift */; };
 		A15FAA5C29797533003A5EA2 /* ControlErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15FAA5B29797533003A5EA2 /* ControlErrors.swift */; };
 		A15FAA5E29797570003A5EA2 /* Error+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15FAA5D29797570003A5EA2 /* Error+Extension.swift */; };
 		A15FAA60297977CC003A5EA2 /* Application+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15FAA5F297977CC003A5EA2 /* Application+Extension.swift */; };
@@ -84,6 +85,7 @@
 		A15C14B02978703400190EEC /* EnumTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumTypeView.swift; sourceTree = "<group>"; };
 		A15C14B32978797800190EEC /* Image+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extension.swift"; sourceTree = "<group>"; };
 		A15C14B5297885A800190EEC /* NavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavController.swift; sourceTree = "<group>"; };
+		A15E49AA297A97150077AD9A /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		A15FAA5B29797533003A5EA2 /* ControlErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlErrors.swift; sourceTree = "<group>"; };
 		A15FAA5D29797570003A5EA2 /* Error+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Extension.swift"; sourceTree = "<group>"; };
 		A15FAA5F297977CC003A5EA2 /* Application+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Application+Extension.swift"; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				A15FAA5D29797570003A5EA2 /* Error+Extension.swift */,
 				A15FAA5F297977CC003A5EA2 /* Application+Extension.swift */,
 				A15FAA662979DE5E003A5EA2 /* Control+Extension.swift */,
+				A15E49AA297A97150077AD9A /* View+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -644,6 +647,7 @@
 				A1E7106829782C7B0014A3BB /* ItemMainListCell.swift in Sources */,
 				A15C14B6297885A800190EEC /* NavController.swift in Sources */,
 				A15FAA60297977CC003A5EA2 /* Application+Extension.swift in Sources */,
+				A15E49AB297A97150077AD9A /* View+Extension.swift in Sources */,
 				A1E7103129781A6D0014A3BB /* AppDelegate.swift in Sources */,
 				A15C148D297863E300190EEC /* MainPresenter.swift in Sources */,
 				A15FAA6229798DF9003A5EA2 /* BaseView.swift in Sources */,
