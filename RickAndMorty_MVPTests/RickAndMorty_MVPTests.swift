@@ -17,20 +17,100 @@ class RickAndMorty_MVPTests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    func testGetAllCharacters() throws {
+        let services = RickMortServices.shared
+        let promise = expectation(description: "Call API success")
+        services.getAllCharacters { characters in
+            promise.fulfill()
+        } failureHandler: { error in
+            print(error)
+            return
         }
+        waitForExpectations(timeout: 5)
     }
-
+    
+    func testGetCharactersbyIds() throws {
+        let services = RickMortServices.shared
+        let promise = expectation(description: "Call API success")
+        services.getCharacters([1,2]) { characters in
+            promise.fulfill()
+        } failureHandler: { error in
+            print(error)
+            return
+        }
+        waitForExpectations(timeout: 5)
+    }
+    
+    func testGetCharactersbyIdsError() throws {
+        let services = RickMortServices.shared
+        let promise = expectation(description: "Call API failure by array ids empty")
+        services.getCharacters([]) { _ in
+            return
+        } failureHandler: { error in
+            print(error)
+            promise.fulfill()
+        }
+        waitForExpectations(timeout: 5)
+    }
+    
+    func testGetAllEpisodes() throws {
+        let services = RickMortServices.shared
+        let promise = expectation(description: "Call API success")
+        services.getAllEpisodes { episodes in
+            promise.fulfill()
+        } failureHandler: { error in
+            print(error)
+            return
+        }
+        waitForExpectations(timeout: 5)
+    }
+    
+    func testGetEpisodesbyIds() throws {
+        let services = RickMortServices.shared
+        let promise = expectation(description: "Call API success")
+        services.getEpisodes([1,2]) { episodes in
+            promise.fulfill()
+        } failureHandler: { error in
+            print(error)
+            return
+        }
+        waitForExpectations(timeout: 5)
+    }
+    
+    func testGetEpisodesbyIdsError() throws {
+        let services = RickMortServices.shared
+        let promise = expectation(description: "Call API failure by array ids empty")
+        services.getEpisodes([]) { _ in
+            return
+        } failureHandler: { error in
+            print(error)
+            promise.fulfill()
+        }
+        waitForExpectations(timeout: 5)
+    }
+    
+    func testGetLocationsByIds() throws {
+        let services = RickMortServices.shared
+        let promise = expectation(description: "Call API success")
+        services.getLocations([1,2]) { locations in
+            promise.fulfill()
+        } failureHandler: { error in
+            print(error)
+            return
+        }
+        waitForExpectations(timeout: 5)
+    }
+    
+    func testGetLocationsByIdsError() throws {
+        let services = RickMortServices.shared
+        let promise = expectation(description: "Call API failure by array ids empty")
+        services.getLocations([]) { _ in
+            return
+        } failureHandler: { error in
+            print(error)
+            promise.fulfill()
+        }
+        waitForExpectations(timeout: 5)
+    }
 }
